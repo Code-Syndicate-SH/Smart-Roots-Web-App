@@ -1,0 +1,496 @@
+/* --- Google Font Import --- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@300;400;600&display=swap");
+
+/* --- CSS Variables for a Clean Theme --- */
+:root {
+  --primary-green: #2ecc71;
+  --dark-green: #27ae60;
+  --dark-bg: #1a1d24;
+  --light-bg: #2c313a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #bdc3c7;
+  --border-color: #3e444f;
+  --font-family: "Poppins", sans-serif;
+  --font-header: "Space Grotesk", sans-serif;
+  --container-width: 1100px;
+  --glow-color: rgba(46, 204, 113, 0.5);
+}
+
+/* --- Global Reset & Base Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  background-color: transparent;
+}
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary-green);
+  opacity: 0.5;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+  z-index: 9999;
+}
+/* --- Utility Classes --- */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform, box-shadow; /* Hint to the browser */
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-green);
+  /* The transition is now on the transform property */
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--primary-green);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-green);
+  color: #fff;
+}
+
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 1.5rem 0;
+  background: rgba(26, 29, 36, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* 
+  REPLACE the old .nav-container rule with this.
+  This is the key change. We are now styling the .container
+  element directly when it's inside the navbar.
+*/
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.nav-logo span {
+  color: var(--primary-green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-header); /* Use the new header font */
+}
+/* --- Hero Section --- */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  /* TODO: Add your insane background image here */
+
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(26, 29, 36, 0.7) 0%,
+    rgba(26, 29, 36, 0.95) 100%
+  );
+  z-index: -1;
+}
+
+.hero-content h1 {
+  font-size: 5rem; /* A bit bigger for more impact */
+}
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.hero-content h1 span {
+  color: var(--primary-green);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* --- Features Section --- */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: var(--light-bg);
+  padding: 2.5rem;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+.feature-card,
+.team-card {
+  position: relative; /* Required for the pseudo-element */
+  background-color: rgba(44, 49, 58, 0.7); /* Slightly transparent */
+  backdrop-filter: blur(5px);
+}
+
+.feature-card::before,
+.team-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px; /* Match the card's border-radius */
+  border: 1px solid transparent;
+  background: radial-gradient(
+      400px circle at var(--mouse-x) var(--mouse-y),
+      var(--glow-color),
+      transparent 40%
+    )
+    border-box;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+.feature-card:hover::before,
+.team-card:hover::before {
+  opacity: 1;
+}
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+}
+.form-message {
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.form-message-error {
+  background-color: #442c2e; /* Dark red background */
+  color: #ff8a8a; /* Light red text */
+  border-color: #e53935;
+}
+
+.form-message-success {
+  background-color: #1e4620; /* Dark green background */
+  color: #a5d6a7; /* Light green text */
+  border-color: var(--primary-green);
+}
+.role-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.role-option {
+  position: relative; /* For custom radio button */
+  display: block;
+}
+
+.role-option input[type="radio"] {
+  position: absolute; /* Hide the default radio button */
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.role-option span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Style the span when the hidden radio button is checked */
+.role-option input[type="radio"]:checked + span {
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+}
+
+/* Add a hover effect for better UX */
+.role-option input[type="radio"]:not(:checked):hover + span {
+  border-color: var(--text-secondary);
+}
+/* --- Overview Section --- */
+.overview-content {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.overview-text p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.overview-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.overview-image {
+  width: 100%;
+  height: 250px;
+  background-color: var(--light-bg);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  /* TODO: Replace with your images */
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+}
+.overview-image:nth-child(1) {
+  transform: rotate(-5deg) translateY(10px);
+}
+.overview-image:nth-child(2) {
+  transform: rotate(3deg) translateY(-20px);
+}
+/* --- Team Section --- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.team-card {
+  background-color: var(--light-bg);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.team-card h4 {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  margin-bottom: 0.25rem;
+}
+
+.team-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* --- Auth Pages (Login/Register) --- */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--light-bg);
+  padding: 3rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.auth-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-green);
+}
+
+.auth-container .btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.auth-switch-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.auth-switch-link a {
+  color: var(--primary-green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch-link a:hover {
+  text-decoration: underline;
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--light-bg);
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+}
+
+.footer p {
+  color: var(--text-secondary);
+}

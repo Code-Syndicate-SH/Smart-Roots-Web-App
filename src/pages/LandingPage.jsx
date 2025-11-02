@@ -1,9 +1,10 @@
-// src/pages/LandingPage.jsx
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-// Import motion from framer-motion
+import growthImage from "../assets/growth.jpg";
+import strawberryImage from "../assets/strawberry.jpg";
+
 import { motion } from "framer-motion";
 
 const LandingPage = () => {
@@ -164,15 +165,13 @@ const LandingPage = () => {
                 <div
                   className="overview-image"
                   style={{
-                    backgroundImage:
-                      "url('https://via.placeholder.com/400x300/2c313a/ffffff?text=🍅+Fruit+&+Veggie+Tent')",
+                    backgroundImage: `url(${growthImage})`,
                   }}
                 ></div>
                 <div
                   className="overview-image"
                   style={{
-                    backgroundImage:
-                      "url('https://via.placeholder.com/400x300/2c313a/ffffff?text=🌾+Animal+Fodder+Tent')",
+                    backgroundImage: `url(${strawberryImage})`,
                   }}
                 ></div>
               </div>
